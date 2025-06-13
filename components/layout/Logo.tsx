@@ -9,11 +9,12 @@ export default function Logo({ compact }: LogoProps) {
   return (
     <div className={clsx(
       "p-3 border-b border-white/20",
-      compact ? "px-2" : "px-4"  // Ajuste de padding
+      compact ? "px-2" : "px-3",
+      "flex justify-center"  // Ajuste de padding
     )}>
       <div className={clsx(
-        "relative transition-all duration-300",
-        compact ? "w-10 h-10" : "w-12 h-12"  // Dos tamaños posibles
+        "relative",
+        compact ? "w-10 h-10" : "w-10 h-10"  // Dos tamaños posibles
       )}>
         <Image
           src="/images/logoLogin.png"
@@ -26,7 +27,7 @@ export default function Logo({ compact }: LogoProps) {
       
       {/* Texto opcional (para versión desktop expandida) */}
       {!compact && (
-        <p className="mt-2 text-center text-white text-xs font-medium hidden md:block">
+        <p className="mt-2 ml-8 text-center text-white text-lg font-medium hidden md:block">
           Dashky 
         </p>
       )}

@@ -1,17 +1,55 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import url('https://use.typekit.net/rsp8ycm.css');
+:root {
+  --font-titles: 'Raleway', sans-serif;
+  /* Paleta corporativa */
+  --corporate-dark: #0c2122;       /* Dark Jungle Green */
+  --corporate-ocean: #5fbfb8;      /* Ocean Green */
+  --corporate-malachite: #65db8b;  /* Light Malachite Green */
+  --corporate-white: #e0e0e0;  
+  --corporate-slate:rgb(40, 95, 76);
+  --corporate-black: #08191A;   /* Chinese White */
+}
 
-body {
-  margin-left: 4rem; /* Mobile */
+/* Clases para los colores */
+.bg-corporate-dark {
+  background-color: var(--corporate-dark);
+}
+.bg-corporate-black {
+  background-color: var(--corporate-black);
+}
+.bg-corporate-slate {
+  background-color: var(--corporate-slate);
+}
+.bg-corporate-ocean {
+  background-color: var(--corporate-ocean);
+}
+.bg-corporate-malachite {
+  background-color: var(--corporate-malachite);
+}
+.text-corporate-white {
+  color: var(--corporate-white);
+}
+.border-corporate-dark {
+  border-color: var(--corporate-dark);
+}
+.hover\:bg-corporate-ocean:hover {
+  background-color: var(--corporate-ocean);
+}
+.hover\:bg-corporate-black:hover {
+  background-color: var(--corporate-black);
+}
+main {
+  width: calc(100% - 4rem);
+  transition: margin-left 0.3s ease; /* Resta el ancho del sidebar */
 }
 
 @media (min-width: 768px) {
-  body {
-    margin-left: 16rem; /* Desktop expandido por defecto */
-    transition: margin-left 0.3s ease;
+  main {
+    width: calc(100% - 16rem); /* Desktop expandido */
   }
-  
-  body.compact-sidebar {
-    margin-left: 4rem; /* Desktop compacto */
+  .compact-sidebar main {
+    width: calc(100% - 4rem); /* Desktop compacto */
   }
 }

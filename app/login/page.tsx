@@ -1,5 +1,5 @@
 "use client";
-import {toast} from 'sonner'
+import { toast } from "sonner";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -9,23 +9,30 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Loader2 } from "lucide-react";
-import clsx from 'clsx';
+import clsx from "clsx";
 export default function LoginPage() {
   const router = useRouter();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(false);
+  const [errors, setErrors] = useState({
+    username: false,
+    password: false,
+    invalid: false,
+  });
   const [loading, setLoading] = useState(false);
-
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
     setTimeout(() => {
+      setErrors({
+        username: !username,
+        password: !password,
+        invalid: false,
+      });
       if (!username || !password) {
-        setError(true);
         toast.error("Por favor completa ambos campos.");
         setLoading(false);
         return;
@@ -35,16 +42,37 @@ export default function LoginPage() {
 
       if (user) {
         localStorage.setItem("user", JSON.stringify(user));
-        toast.success("Sesión iniciada exitosamente 🚀")
+        toast.success("Sesión iniciada exitosamente 🚀");
         router.push("/dashboard");
       } else {
-        setError(true)
-        toast.error("Credenciales inválidas, intenta nuevamente.")
+        setErrors({
+          username: true,
+          password: true,
+          invalid: true,
+        });
+        toast.error("Credenciales inválidas, intenta nuevamente.");
       }
 
       setLoading(false); // Finaliza animación
     }, 1000);
   };
+
+  const handleInputChange =
+    (field: "username" | "password") =>
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (field === "username") {
+        setUsername(e.target.value);
+      } else {
+        setPassword(e.target.value);
+      }
+
+      // Limpiar error solo para el campo que está siendo editado
+      setErrors((prev) => ({
+        ...prev,
+        [field]: false,
+        invalid: false,
+      }));
+    };
 
   return (
     <div className="min-h-screen grid grid-cols-1 md:grid-cols-2">
@@ -70,7 +98,8 @@ export default function LoginPage() {
           </p>
         </div>
         <div className="absolute bottom-8 left-8 text-white text-4xl">
-          <p className='font-raleway'>Si vas a confiar,</p> <p className='font-raleway'>que sea en los datos</p>
+          <p className="font-raleway">Si vas a confiar,</p>{" "}
+          <p className="font-raleway">que sea en los datos</p>
         </div>
       </div>
 
@@ -90,26 +119,24 @@ export default function LoginPage() {
                 type="text"
                 placeholder="Usuario"
                 value={username}
-                onChange={(e) => {
-                  setUsername(e.target.value);
-                  setError(false);
-                }}
+                onChange={handleInputChange("username")}
                 className={clsx(
-                  "font-raleway text-sm text-corporate-dark",
-                  error ? "border-red-500" : "border-corporate-ocean"
+                  "font-raleway text-sm text-corporate-dark border-2",
+                  errors.username || errors.invalid
+                    ? "border-red-500 focus-visible:ring-red-500"
+                    : "border-corporate-ocean focus-visible:ring-corporate-ocean"
                 )}
               />
               <Input
                 type="password"
                 placeholder="Contraseña"
                 value={password}
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                  setError(false);
-                }}
+                onChange={handleInputChange("password")}
                 className={clsx(
-                  "font-raleway text-sm text-corporate-dark",
-                  error ? "border-red-500" : "border-corporate-ocean"
+                  "font-raleway text-sm text-corporate-dark border-2",
+                  errors.password || errors.invalid
+                    ? "border-red-500 focus-visible:ring-red-500"
+                    : "border-corporate-ocean focus-visible:ring-corporate-ocean"
                 )}
               />
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-sm mt-2">

@@ -1,92 +1,143 @@
-'use client'
-
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { validateUser } from "@/lib/auth"
-import { useRouter } from "next/navigation"
-import { useState } from "react"
-import Image from "next/image"
-import Link from "next/link"
-
+"use client";
+import {toast} from 'sonner'
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { validateUser } from "@/lib/auth";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { Loader2 } from "lucide-react";
+import clsx from 'clsx';
 export default function LoginPage() {
-  const router = useRouter()
+  const router = useRouter();
 
-  const [username, setUsername] = useState("")
-  const [password, setPassword] = useState("")
-  const [error, setError] = useState("")
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
+
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    const user = validateUser(username, password)
+    e.preventDefault();
+    setLoading(true);
 
-    if (user) {
-      // Redirigir al dashboard
-      localStorage.setItem("user", JSON.stringify(user))
-      router.push("/dashboard")
-      
-    } else {
-      setError("Invalid credentials. Try again.")
-    }
-  }
+    setTimeout(() => {
+      if (!username || !password) {
+        setError(true);
+        toast.error("Por favor completa ambos campos.");
+        setLoading(false);
+        return;
+      }
+
+      const user = validateUser(username, password);
+
+      if (user) {
+        localStorage.setItem("user", JSON.stringify(user));
+        toast.success("Sesión iniciada exitosamente 🚀")
+        router.push("/dashboard");
+      } else {
+        setError(true)
+        toast.error("Credenciales inválidas, intenta nuevamente.")
+      }
+
+      setLoading(false); // Finaliza animación
+    }, 1000);
+  };
 
   return (
     <div className="min-h-screen grid grid-cols-1 md:grid-cols-2">
-      <div className="relative hidden md:block bg-gradient-to-br from-teal-700 to-black">
+      <div className="relative hidden md:block bg-[linear-gradient(to_right,var(--corporate-ocean),var(--corporate-slate),var(--corporate-dark))]">
         <Image
           src="/images/espiral2.png"
           alt="Decoración"
           layout="fill"
           objectFit="cover"
-          className="opacity-50"
+          className="opacity-100"
         />
         <div className="absolute top-6 left-6">
-          <Image src="/images/logoLogin.png" alt="Logo" width={40} height={40} />
+          <Image
+            src="/images/logoLogin.png"
+            alt="Logo"
+            width={32}
+            height={32}
+          />
         </div>
-        <div className="absolute bottom-6 left-6 text-white font-semibold text-xl">
-          Dashky
+        <div className="absolute top-6 right-6 max-w-s text-right">
+          <p className="font-raleway text-white text-2xl font-medium leading-snug">
+            Dashky
+          </p>
+        </div>
+        <div className="absolute bottom-8 left-8 text-white text-4xl">
+          <p className='font-raleway'>Si vas a confiar,</p> <p className='font-raleway'>que sea en los datos</p>
         </div>
       </div>
 
-      <div className="flex items-center justify-center bg-gray-50 p-6">
-        <Card className="w-full max-w-md">
-          <CardHeader>
-            <CardTitle className="text-2xl text-center">Sign in</CardTitle>
-            <p className="text-sm text-gray-500 text-center">
-              Access to your Nexchange account
+      <div className="flex items-center justify-center bg-corporate-white p-4 sm:p-6">
+        <Card className="w-full max-w-md bg-white p-6 sm:p-8 rounded-3xl shadow-xl border-2 border-corporate-slate">
+          <CardHeader className="text-center space-y-2">
+            <CardTitle className="text-2xl font-raleway font-semibold text-corporate-dark">
+              Inicia Sesion
+            </CardTitle>
+            <p className="text-md font-raleway text-corporate-dark">
+              Accede a tu cuenta
             </p>
           </CardHeader>
-          <CardContent>
+          <CardContent className="pt-2">
             <form className="space-y-4" onSubmit={handleSubmit}>
               <Input
                 type="text"
-                placeholder="E-Mail address"
+                placeholder="Usuario"
                 value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                onChange={(e) => {
+                  setUsername(e.target.value);
+                  setError(false);
+                }}
+                className={clsx(
+                  "font-raleway text-sm text-corporate-dark",
+                  error ? "border-red-500" : "border-corporate-ocean"
+                )}
               />
               <Input
                 type="password"
-                placeholder="Password"
+                placeholder="Contraseña"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  setError(false);
+                }}
+                className={clsx(
+                  "font-raleway text-sm text-corporate-dark",
+                  error ? "border-red-500" : "border-corporate-ocean"
+                )}
               />
-              {error && <p className="text-red-500 text-sm">{error}</p>}
-              <div className="flex items-center justify-between text-sm">
-                <label className="flex items-center gap-2">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-sm mt-2">
+                <label className="font-raleway flex items-center gap-3 text-corporate-dark ">
                   <input type="checkbox" className="accent-teal-600" />
-                  Keep me logged in
+                  Recuerdame
                 </label>
-                <Link href="#" className="text-teal-600 hover:underline">
-                  Forgot password?
+                <Link
+                  href="#"
+                  className="font-raleway font-medium text-corporate-dark hover:underline"
+                >
+                  ¿Olvidaste tu contraseña?
                 </Link>
               </div>
-              <Button type="submit" className="w-full">
-                Login
+              <Button
+                type="submit"
+                className="font-raleway w-full bg-corporate-slate text-white rounded-2xl hover:bg-corporate-dark"
+                disabled={loading}
+              >
+                {loading ? (
+                  <Loader2 className="animate-spin h-4 w-4 mr-2" />
+                ) : null}
+                {loading ? "Iniciando..." : "Iniciar Sesion"}
               </Button>
             </form>
           </CardContent>
         </Card>
       </div>
     </div>
-  )
+  );
 }

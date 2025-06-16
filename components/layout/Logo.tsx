@@ -13,8 +13,8 @@ export default function Logo({ compact }: LogoProps) {
       "flex justify-center"  // Ajuste de padding
     )}>
       <div className={clsx(
-        "relative",
-        compact ? "w-10 h-10" : "w-10 h-10"  // Dos tamaños posibles
+        "relative ",
+        compact ? "w-8 h-8" : "w-6 h-6"  // Dos tamaños posibles
       )}>
         <Image
           src="/images/logoLogin.png"
@@ -27,7 +27,7 @@ export default function Logo({ compact }: LogoProps) {
       
       {/* Texto opcional (para versión desktop expandida) */}
       {!compact && (
-        <p className="mt-2 ml-8 text-center text-white text-lg font-medium hidden md:block">
+        <p className="font-raleway mt-2 ml-8 text-center text-white text-lg font-medium hidden md:block">
           Dashky 
         </p>
       )}

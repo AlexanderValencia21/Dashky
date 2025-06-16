@@ -1,7 +1,15 @@
-@import "tailwindcss";
+@import "tailwindcss/preflight";     
+@import "tw-animate-css";             
+@import "tailwindcss/utilities";
+@import "tailwindcss";     
 @import "tw-animate-css";
-@import url('https://use.typekit.net/rsp8ycm.css');
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap');
+
 :root {
+  --font-raleway: 'Raleway', sans-serif;
+  --card: white;
+  --card-foreground: black;
   --font-titles: 'Raleway', sans-serif;
   /* Paleta corporativa */
   --corporate-dark: #0c2122;       /* Dark Jungle Green */
@@ -9,10 +17,22 @@
   --corporate-malachite: #65db8b;  /* Light Malachite Green */
   --corporate-white: #e0e0e0;  
   --corporate-slate:rgb(40, 95, 76);
-  --corporate-black: #08191A;   /* Chinese White */
+  --corporate-black: #08191A; 
+    /* Chinese White */
 }
-
+.font-raleway {
+  font-family: var(--font-raleway);
+}
+.bg-card {
+  background-color: var(--card);
+}
+.text-card-foreground {
+  color: var(--card-foreground);
+}
 /* Clases para los colores */
+.accent-corporate-ocean{
+  color: var(--corporate-ocean);
+}
 .bg-corporate-dark {
   background-color: var(--corporate-dark);
 }
@@ -31,6 +51,15 @@
 .text-corporate-white {
   color: var(--corporate-white);
 }
+.text-corporate-black {
+  color: var(--corporate-black);
+}
+.text-corporate-dark {
+  color: var(--corporate-dark);
+}
+.text-corporate-slate {
+  color: var(--corporate-slate);
+}
 .border-corporate-dark {
   border-color: var(--corporate-dark);
 }
@@ -39,6 +68,15 @@
 }
 .hover\:bg-corporate-black:hover {
   background-color: var(--corporate-black);
+}
+.hover\:bg-corporate-malachite:hover {
+  background-color: var(--corporate-malachite);
+}
+.hover\:bg-corporate-slate:hover {
+  background-color: var(--corporate-slate);
+}
+.border-corporate-slate {
+  border-color: var(--corporate-slate);
 }
 main {
   width: calc(100% - 4rem);
@@ -50,6 +88,151 @@ main {
     width: calc(100% - 16rem); /* Desktop expandido */
   }
   .compact-sidebar main {
-    width: calc(100% - 4rem); /* Desktop compacto */
+    width: calc(100% - 120rem); /* Desktop compacto */
   }
 }
+.bg-card {
+  background-color: var(--corporate-black); /* o el que prefieras */
+}
+.text-card-foreground {
+  color: var(--corporate-white);
+}
+
+.bg-muted {
+  background-color: var(--corporate-dark);
+}
+.text-muted-foreground {
+  color: var(--corporate-white);
+}
+
+.border {
+  border-color: var(--corporate-ocean);
+}
+
+.hover\:bg-muted:hover {
+  background-color: var(--corporate-slate);
+}
+.card {
+  background-color: var(--corporate-black);
+  color: var(--corporate-white);
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+  .react-confirm-alert-overlay {
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .react-confirm-alert {
+    font-family: var(--font-titles);
+  }
+
+  .react-confirm-alert-body {
+    background: var(--corporate-dark);
+    border-radius: 0.5rem;
+    padding: 2rem;
+    color: var(--corporate-white);
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    pointer-events: auto;
+    animation: slideUp 0.3s ease-out forwards;
+  }
+  @keyframes slideUp {
+    from {
+      transform: translateY(30px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .react-confirm-alert-body h1 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--corporate-ocean);
+  }
+
+  .react-confirm-alert-body p {
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .react-confirm-alert-button-group {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .react-confirm-alert-button-group button {
+    background: var(--corporate-ocean);
+    border: none;
+    color: black;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+
+  .react-confirm-alert-button-group button:hover {
+    background: var(--corporate-white);
+    color: black;
+  }
+
+  .react-confirm-alert-button-group button:last-child {
+    background: transparent;
+    border: 1px solid var(--corporate-white);
+    color: var(--corporate-white);
+  }
+
+  .react-confirm-alert-button-group button:last-child:hover {
+    background: var(--corporate-black);
+  }
+
+  @media (max-width: 480px) {
+    .react-confirm-alert-body {
+      padding: 1.25rem;
+      max-width: 90%;
+      font-size: 0.9rem;
+    }
+
+    .react-confirm-alert-body h1 {
+      font-size: 1.2rem;
+    }
+
+    .react-confirm-alert-body p {
+      font-size: 0.85rem;
+    }
+
+    .react-confirm-alert-button-group {
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .react-confirm-alert-button-group button {
+      width: 100%;
+      font-size: 0.9rem;
+    }
+  }
+  .react-confirm-alert {
+    position: fixed !important;
+    inset: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    pointer-events: none; 
+  }

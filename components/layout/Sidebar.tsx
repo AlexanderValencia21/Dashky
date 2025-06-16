@@ -28,7 +28,7 @@ export default function Sidebar() {
           },
           {
             label: 'Cancelar',
-            onClick: () => {} // no hacer nada
+            onClick: () => {}
           }
         ],
         overlayClassName: "bg-corporate-dark bg-opacity-40"
@@ -49,19 +49,18 @@ export default function Sidebar() {
         className={clsx(
           "fixed top-0 left-0 h-full flex flex-col z-40",
           "transition-all duration-300",
-          // Colores corporativos
-          "bg-corporate-dark", // Dark Jungle Green
-          "text-corporate-white", // Chinese White
+          "bg-corporate-dark", 
+          "text-corporate-white", 
           // Mobile
-          "w-16 transform", // Compacto en móvil
+          "w-16 transform",
           {
             "-translate-x-full": !mobileOpen,
             "translate-x-0": mobileOpen,
           },
           // Desktop
           "md:translate-x-0",
-          "md:w-16", // Compacto por defecto
-          !desktopCompact && "md:w-64"
+          "md:w-14", 
+          !desktopCompact && "md:w-52"
         )}
       >
         <Logo compact={desktopCompact} />
@@ -72,18 +71,18 @@ export default function Sidebar() {
               key={href}
               href={href}
               className={clsx(
-                "font-raleway flex items-center mx-2 p-3 rounded transition-colors",
+                "font-raleway flex items-center md:mr-8 md:ml-2 md:mb-2 mx-2 mb-2  p-4 rounded-xl transition-colors",
                 "justify-center md:justify-start",
                 pathname === href
                   ? "bg-corporate-slate"
-                  : "hover:bg-corporate-black", // Malachite/Ocean Green
+                  : "hover:bg-corporate-black",
                 !desktopCompact && "md:px-4"
               )}
               title={label}
             >
-              <Icon className="w-5 h-5" />
+              <Icon className="w-5 h-5 flex-shrink-0" />
               {!desktopCompact && (
-                <span className="font-titles ml-3 hidden md:block text-sm">
+                <span className="font-titles ml-4 hidden md:block text-sm">
                   {label}
                 </span>
               )}

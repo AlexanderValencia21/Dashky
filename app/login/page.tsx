@@ -53,7 +53,7 @@ export default function LoginPage() {
         toast.error("Credenciales inválidas, intenta nuevamente.");
       }
 
-      setLoading(false); // Finaliza animación
+      setLoading(false); 
     }, 1000);
   };
 

@@ -2,32 +2,31 @@ import Image from "next/image";
 import clsx from "clsx";
 
 type LogoProps = {
-  compact?: boolean;  // Parámetro opcional
+  compact?: boolean; 
 };
 
 export default function Logo({ compact }: LogoProps) {
   return (
     <div className={clsx(
-      "p-3 border-b border-white/20",
-      compact ? "px-2" : "px-3",
-      "flex justify-center"  // Ajuste de padding
+      "border-b border-white/20",
+      "flex items-center",
+      compact ? "p-3 justify-center" : "p-4 px-5",
     )}>
       <div className={clsx(
-        "relative ",
-        compact ? "w-8 h-8" : "w-6 h-6"  // Dos tamaños posibles
+        "relative flex-shrink-0",
+        compact ? "w-7 h-7" : "w-7 h-7" 
       )}>
         <Image
           src="/images/logoLogin.png"
           alt="Logo de la App"
-          fill  // Usamos fill en lugar de width/height
+          fill
           className="object-contain"
           priority
         />
       </div>
       
-      {/* Texto opcional (para versión desktop expandida) */}
       {!compact && (
-        <p className="font-raleway mt-2 ml-8 text-center text-white text-lg font-medium hidden md:block">
+        <p className="font-raleway ml-4 text-white text-lg font-medium hidden md:block">
           Dashky 
         </p>
       )}

@@ -8,17 +8,19 @@ export default function DashboardLayout({
 }: {
   children: React.ReactNode;
 }) {
-    const { desktopCompact } = useSidebar();
+    const {mobileOpen } = useSidebar();
   return (
     <SidebarProvider>
       <div className="flex">
         <Sidebar />
         <main className={clsx(
           "min-h-screen bg-gray-100 w-full transition-all duration-300",
-          "md:ml-16",
-          desktopCompact ? "md:ml-16" : "md:ml-64"
+          {
+            "ml-14": mobileOpen, 
+          },
+          "md:ml-50"
         )}>
-          <div className="p-4">{children}</div>
+          <div className="">{children}</div>
         </main>
       </div>
     </SidebarProvider>

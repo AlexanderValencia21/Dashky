@@ -53,7 +53,7 @@ export default function LoginPage() {
         toast.error("Credenciales inválidas, intenta nuevamente.");
       }
 
-      setLoading(false); 
+      setLoading(false);
     }, 1000);
   };
 
@@ -76,6 +76,23 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen grid grid-cols-1 md:grid-cols-2">
+      <div className="absolute inset-0 block md:hidden z-0 bg-[linear-gradient(to_bottom_right,var(--corporate-dark),var(--corporate-slate),var(--corporate-dark))]">
+        <Image
+          src="/images/espiral2.png"
+          alt="Decoración móvil"
+          layout="fill"
+          objectFit="cover"
+          className="opacity-100"
+        />
+      </div>
+      <div className="absolute top-6 left-6 z-10 block md:hidden">
+        <Image
+          src="/images/logoLogin.png"
+          alt="Logo móvil"
+          width={32}
+          height={32}
+        />
+      </div>
       <div className="relative hidden md:block bg-[linear-gradient(to_right,var(--corporate-ocean),var(--corporate-slate),var(--corporate-dark))]">
         <Image
           src="/images/espiral2.png"
@@ -103,7 +120,7 @@ export default function LoginPage() {
         </div>
       </div>
 
-      <div className="flex items-center justify-center bg-corporate-white p-4 sm:p-6">
+      <div className="relative z-10 flex items-center justify-center bg-transparent md:bg-corporate-white p-4 sm:p-6">
         <Card className="w-full max-w-md bg-white p-6 sm:p-8 rounded-3xl shadow-xl border-2 border-corporate-slate">
           <CardHeader className="text-center space-y-2">
             <CardTitle className="text-2xl font-raleway font-semibold text-corporate-dark">
@@ -141,12 +158,15 @@ export default function LoginPage() {
               />
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-sm mt-2">
                 <label className="font-raleway flex items-center gap-3 text-corporate-dark ">
-                  <input type="checkbox" className="accent-teal-600  cursor-pointer" />
+                  <input
+                    type="checkbox"
+                    className="accent-teal-600  cursor-pointer"
+                  />
                   Recuerdame
                 </label>
                 <Link
                   href="#"
-                  className="font-raleway font-medium text-corporate-dark hover:underline"
+                  className="font-raleway font-semibold text-center text-corporate-dark hover:underline"
                 >
                   ¿Olvidaste tu contraseña?
                 </Link>

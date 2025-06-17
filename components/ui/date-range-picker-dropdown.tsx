@@ -54,7 +54,7 @@ export function DateRangePickerDropdown({
           {format(range[0].startDate!, "dd/MM/yyyy")} - {format(range[0].endDate!, "dd/MM/yyyy")}
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-auto p-0 shadow-lg border border-corporate-slate z-50 font-raleway" align="end">
+      <PopoverContent className="w-auto p-1 shadow-lg border border-corporate-slate z-50 font-raleway" align="end">
         <DateRange
           ranges={range}
           onChange={handleSelect}

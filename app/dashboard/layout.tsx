@@ -19,9 +19,9 @@ export default function DashboardLayout({
         <main className={clsx(
           "min-h-screen bg-corporate-white w-full transition-all duration-300",
           {
-            "ml-18": mobileOpen, 
+            "ml-16": mobileOpen, 
           },
-          "md:ml-48"
+          "md:ml-46"
         )}>
           <div className="p-4 sm:p-6">{children}</div>
         </main>

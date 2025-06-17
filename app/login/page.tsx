@@ -93,7 +93,7 @@ export default function LoginPage() {
           height={32}
         />
       </div>
-      <div className="relative hidden md:block bg-[linear-gradient(to_right,var(--corporate-ocean),var(--corporate-slate),var(--corporate-dark))]">
+      <div className="relative hidden md:block bg-[linear-gradient(to_bottom_right,var(--corporate-dark),var(--corporate-slate),var(--corporate-dark))]">
         <Image
           src="/images/espiral2.png"
           alt="Decoración"

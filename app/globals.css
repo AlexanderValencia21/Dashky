@@ -3,7 +3,8 @@
 @import "tailwindcss/utilities";
 @import "tailwindcss";     
 @import "tw-animate-css";
-
+@import "react-date-range/dist/styles.css";
+@import "react-date-range/dist/theme/default.css";
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap');
 
 :root {
@@ -47,6 +48,9 @@
 }
 .bg-corporate-malachite {
   background-color: var(--corporate-malachite);
+}
+.bg-corporate-white {
+  background-color: var(--corporate-white);
 }
 .text-corporate-white {
   color: var(--corporate-white);
@@ -235,4 +239,27 @@ main {
     align-items: center !important;
     justify-content: center !important;
     pointer-events: none; 
+  }
+  .react-date-range {
+    font-family: inherit !important;
+  }
+  
+  /* Ajusta el ancho del calendario */
+  .react-date-range__wrapper {
+    width: 100% !important;
+  }
+  
+  /* Estilo para días de la semana */
+  .react-date-range__month {
+    width: 100% !important;
+  }
+  
+  /* Celda de día */
+  .react-date-range__day {
+    line-height: 2.3rem !important;
+  }
+  
+  /* Header del calendario */
+  .react-date-range__header {
+    padding: 10px !important;
   }

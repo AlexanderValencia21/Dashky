@@ -1,14 +1,15 @@
 'use client'
 
-import PrivateRoute from "@/components/auth/private-route"
+import { DateRangePickerDropdown } from "@/components/ui/date-range-picker-dropdown";
 
 export default function DashboardPage() {
+  const handleDateChange = (range: { startDate: Date; endDate: Date }) => {
+    console.log("Fechas seleccionadas:", range)
+  }
+
   return (
-    <PrivateRoute>
-      <div className="p-6 bg-[e0e0e0]" >
-        <h1 className="text-2xl font-bold">Bienvenido al Resumen</h1>
-        {/* Aquí irán los gráficos, tablas, etc */}
-      </div>
-    </PrivateRoute>
+    <div className=" flex justify-center w-full md:justify-end ">
+      <DateRangePickerDropdown onChange={handleDateChange} />
+    </div>
   )
 }

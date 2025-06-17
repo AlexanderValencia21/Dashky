@@ -141,7 +141,7 @@ export default function LoginPage() {
               />
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-sm mt-2">
                 <label className="font-raleway flex items-center gap-3 text-corporate-dark ">
-                  <input type="checkbox" className="accent-teal-600" />
+                  <input type="checkbox" className="accent-teal-600  cursor-pointer" />
                   Recuerdame
                 </label>
                 <Link
@@ -153,7 +153,7 @@ export default function LoginPage() {
               </div>
               <Button
                 type="submit"
-                className="font-raleway w-full bg-corporate-slate text-white rounded-2xl hover:bg-corporate-dark"
+                className="font-raleway cursor-pointer w-full bg-corporate-slate text-white rounded-2xl hover:bg-corporate-dark"
                 disabled={loading}
               >
                 {loading ? (

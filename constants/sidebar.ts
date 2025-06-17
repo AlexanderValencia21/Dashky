@@ -6,7 +6,6 @@ import {
     User,
     Map,
     BarChart,
-    Settings,
     LogOut
   } from 'lucide-react';
   
@@ -17,7 +16,6 @@ import {
     { label: 'Clientes', href: '/dashboard/clientes', icon: User },
     { label: 'Territorios', href: '/dashboard/territorios', icon: Map },
     { label: 'Frecuencia', href: '/dashboard/frecuencia', icon: BarChart },
-    { label: 'Settings', href: '/dashboard/settings', icon: Settings },
   ];
   
   export const SIDEBAR_BOTTOM_LINK = {

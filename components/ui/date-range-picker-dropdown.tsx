@@ -45,6 +45,7 @@ export function DateRangePickerDropdown({
       onChange({ startDate: newStartDate, endDate: finalEndDate })
     }
   }
+  
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
